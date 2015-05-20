@@ -1,5 +1,6 @@
 package ccrooks6;
 
+import java.io.IOException;
 import java.util.TreeMap;
 
 import ravensproject.RavensFigure;
@@ -23,7 +24,7 @@ public class Setup {
 	// this method is going to be used to get
 	// all the figures from the hashmap from the problem. 
 	// figures are labeled A,B,C,D,1,2,3,4,5,6
-	public void setFigures()
+	public void setFigures() throws IOException
 	{
 		// lets just print to being with. 
 		
@@ -42,8 +43,11 @@ public class Setup {
 		{
 			 figure = new Figure();
 			 figure.setFigureName(rf.getName());
-			 figure.setObjects(rf.getObjects());
-			 figure.printObjectValues();
+			 figure.setFigureList(problem.getFigures()); // just passing to the figure tree
+			
+			
+			 
+			 figure.setObjects(rf.getObjects()); // this is going to handle the deep work
 			 
 		}
 		

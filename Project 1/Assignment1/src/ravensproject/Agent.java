@@ -1,5 +1,6 @@
 package ravensproject;
 
+import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 
 import ccrooks6.Setup;
@@ -74,7 +75,12 @@ public class Agent {
     // remove and change after every write answer:
        
        Setup s = new Setup(problem); // set up a new class driver 
-       s.setFigures(); // this is a big method
+       try {
+		s.setFigures();
+	} catch (IOException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	} // this is a big method
        					// this will set the figures and all their 
        					// subclass attributes.
       

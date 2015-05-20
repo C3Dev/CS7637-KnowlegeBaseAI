@@ -1,0 +1,67 @@
+package ccrooks6;
+
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Map;
+import java.util.TreeMap;
+
+import ravensproject.RavensObject;
+
+public class Object extends Figure {
+
+	public int count; 
+	public String figureBackup; 
+	HashMap<String, String> list;
+
+	HashMap<String, RavensObject> objects;
+
+	public Object()
+	{
+	
+		count = 0; 
+		list = new HashMap<String, String>(); 
+	}
+	
+	public Object(HashMap<String, RavensObject> objects) {
+		this.objects = objects; 
+	}
+
+	public void setNumObjects(int count)
+	{
+		this.count = count;
+	}
+	
+	
+	public void printObjectValues(String figureName)
+	{
+		int globalcount = 0; 
+		
+		
+		Iterator it = objects.entrySet().iterator();
+		while (it.hasNext()) {
+			Map.Entry pair = (Map.Entry)it.next();
+	        System.out.println(figureName + " " + pair.getKey());
+	        
+	        list.put(figureName, (String) pair.getKey());
+
+		}
+		
+	}
+	
+	public void printFigureObjects()
+	{
+		Map<String, Integer> result = new TreeMap<String, Integer>();
+		for (Map.Entry<Map<String, String>> entry:list.entrySet()) {
+		   String value = entry.getValue();
+		   Integer count = result.get(value);
+		   if (count == null)
+		      result.put(value, new Integer(1));
+		   else
+		      result.put(value, new Integer(count+1));
+		}
+	}
+	
+	
+	
+	
+}

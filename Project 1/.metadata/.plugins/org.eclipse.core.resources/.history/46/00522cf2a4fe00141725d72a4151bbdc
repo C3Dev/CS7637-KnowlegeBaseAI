@@ -1,0 +1,57 @@
+package ccrooks6;
+
+import java.util.HashMap;
+
+import ravensproject.RavensObject;
+
+public class Object extends Figure {
+
+	public int count; 
+	public String figureBackup; 
+
+	HashMap<String, RavensObject> objects;
+
+	public Object()
+	{
+	
+		count = 0; 
+		
+	}
+	
+	public Object(HashMap<String, RavensObject> objects) {
+		this.objects = objects; 
+	}
+
+	public void setNumObjects(int count)
+	{
+		this.count = count;
+	}
+	
+	
+	public void printObjectValues(String figureName)
+	{
+		for (RavensObject ro : objects.values()) {
+			
+			if(figureName.equals(figureBackup)){
+				count ++; 
+			}else{
+				count = 0; 
+			}
+			System.out.println("Printing Objects for figure " +figureName); 
+			System.out.println(ro.getName());
+			storeObjectCount(ro.getName(), count);
+			figureBackup = figureName; 
+		}
+		
+	}
+	
+	
+	//create an new array everytime
+	// store the array in global arraylist
+	public void storeObjectCount(String string, int count2)
+	{
+		
+	}
+	
+	
+}

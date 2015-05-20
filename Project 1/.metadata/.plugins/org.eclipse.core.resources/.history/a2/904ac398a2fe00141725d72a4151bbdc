@@ -1,0 +1,27 @@
+package ccrooks6;
+
+import java.util.HashMap;
+
+import ravensproject.RavensObject;
+
+public class Object extends Figure {
+
+	public int count; 
+	HashMap<String, RavensObject> objects;
+
+	public Object()
+	{
+		count = 0; 
+		
+	}
+	
+	public Object(HashMap<String, RavensObject> objects) {
+		this.objects = objects; 
+	}
+
+	public void setNumObjects(int count)
+	{
+		this.count = count;
+	}
+	
+}

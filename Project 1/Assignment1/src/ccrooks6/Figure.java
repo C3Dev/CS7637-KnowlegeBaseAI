@@ -1,7 +1,9 @@
 package ccrooks6;
 
+import java.io.IOException;
 import java.util.HashMap;
 
+import ravensproject.RavensFigure;
 import ravensproject.RavensObject;
 
 /*This class will hold as the basis for all the figures
@@ -18,31 +20,62 @@ public class Figure {
 	String figureName; 
 	RavensObject ro; 
 	HashMap<String, RavensObject> objects;
+	Object o; 
+	HashMap<String, RavensFigure> figureList; 
 	public Figure()
 	{
 	
 	}
+	
+	
+	// first lets set the map of figures. 
+	
+	public void setFigureList(HashMap<String, RavensFigure> figureList)
+	{
+	this.figureList = figureList; 	
+	}
+	
+	
+	
+	
+	
+	
+	
 
-	public void setObjects(HashMap<String, RavensObject> objects)
+	public void setObjects(HashMap<String, RavensObject> objects) throws IOException
 	{ // iterate over and set objects based on figure. 
 
 		this.objects = objects;
+	
+		// once objects are set pass it to the Object variable 
+		 o = new Object(objects);
+		
+		 printObjects();
+		 for(int i = 1; i <= 4; i++)
+		 {
+			 
+			 o.printFigureObjects(Integer.toString(i)); 
+		 }
 	}
+	
+	
+	public void printObjects() throws IOException
+	{
+	
+		o.printObjectValues(figureName);
+	}
+	
+	
+	
+	
+	
 	
 	public void getTotalObjects()
 	{
 		
 	}
 	
-	public void printObjectValues()
-	{
-		for (RavensObject ro : objects.values()) {
-			
-			System.out.println("Printing Objects for figure " + figureName); 
-			System.out.println(ro.getName());
-		}
-		
-	}
+	
 
 		
 	
