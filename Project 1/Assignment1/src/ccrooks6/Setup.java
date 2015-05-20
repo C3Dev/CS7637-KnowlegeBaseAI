@@ -1,0 +1,55 @@
+package ccrooks6;
+
+import java.util.TreeMap;
+
+import ravensproject.RavensFigure;
+import ravensproject.RavensProblem;
+
+
+public class Setup {
+
+	RavensProblem problem; 
+	Figure figure;
+	
+	
+	
+	public Setup(RavensProblem problem)
+	{
+		this.problem = problem;
+		
+	}
+
+
+	// this method is going to be used to get
+	// all the figures from the hashmap from the problem. 
+	// figures are labeled A,B,C,D,1,2,3,4,5,6
+	public void setFigures()
+	{
+		// lets just print to being with. 
+		
+		/*
+		for(Entry<String, RavensFigure> entry : problem.getFigures().entrySet())
+		{
+			// we know that there are 9 figures. 
+			figure = new Figure(); // this will create 9 figures. 
+			figure.setFigureName(entry.getValue().getName());
+            figure.setObjects();
+		}*/ 
+		
+		TreeMap<String, RavensFigure> sortedFigures = new TreeMap<String,RavensFigure>();
+		sortedFigures.putAll(problem.getFigures());
+		for(RavensFigure rf : sortedFigures.values())
+		{
+			 figure = new Figure();
+			 figure.setFigureName(rf.getName());
+			 figure.setObjects(rf.getObjects());
+			 figure.printObjectValues();
+			 
+		}
+		
+		
+		
+	}
+
+
+}
