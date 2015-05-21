@@ -4,7 +4,7 @@ import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 
 import ccrooks6.Setup;
-
+import ccrooks6.TimeWatch;
 
 // Uncomment these lines to access image processing.
 //import java.awt.Image;
@@ -62,11 +62,10 @@ public class Agent {
      * @return your Agent's answer to this problem
      */
     public int Solve(RavensProblem problem) {
-    	long startTime = System.currentTimeMillis();
-    	
-     if(problem.getName().contains("Basic Problem B-02")){
+   
+     if(problem.getName().contains("Basic Problem B-08")){
     		    
-
+    	TimeWatch watch = TimeWatch.start();
        System.out.println("------Starting application-------"); 
        
        System.out.println("------Starting timer ------------");
@@ -88,9 +87,10 @@ public class Agent {
        
        
        
-    
-       long estimatedTime = System.currentTimeMillis() - startTime;
-       System.out.println("Elapsed Time " + estimatedTime + " seconds" );
+       // must be less than 15 minutes.
+       long passedTimeInMs = watch.time();
+       long passedTimeInSeconds = watch.time(TimeUnit.SECONDS);
+       System.out.println("Elapsed Time " + passedTimeInSeconds + " seconds" );
        
        } // end if 
        return -1; 

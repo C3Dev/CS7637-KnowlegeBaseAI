@@ -64,7 +64,7 @@ public class Agent {
     public int Solve(RavensProblem problem) {
     	long startTime = System.currentTimeMillis();
     	
-     if(problem.getName().contains("Basic Problem B-02")){
+     if(problem.getName().contains("Basic Problem B-08")){
     		    
 
        System.out.println("------Starting application-------"); 

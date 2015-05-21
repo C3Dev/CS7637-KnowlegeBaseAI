@@ -1,10 +1,12 @@
 package ccrooks6;
 
-import java.io.BufferedReader;
+import java.io.BufferedInputStream;
 import java.io.BufferedWriter;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
-import java.io.FileReader;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.OutputStreamWriter;
 import java.util.HashMap;
 
@@ -49,12 +51,8 @@ public class Object extends Figure {
 
           // start up the file 
           bufferedWriter.write("This file is used to store details about each figure \n");
-   
-          bufferedWriter.write("Objects in the Figure: ");
-          bufferedWriter.newLine();
-      	bufferedWriter.write("-----------------------------------------------------");
-    	
-          bufferedWriter.newLine();
+          bufferedWriter.write("Figures in the problem: ");
+	         
           
   		for (RavensObject ro : objects.values()) {
   			
@@ -69,7 +67,7 @@ public class Object extends Figure {
 	             
 	           
 	             
-	           bufferedWriter.write("* " +figureName + " " + ro.getName());
+	           bufferedWriter.write(figureName + " " + ro.getName());
 	            bufferedWriter.newLine();
 	         
 	             
@@ -86,10 +84,9 @@ public class Object extends Figure {
 	
 
 	public void printObjectValues(String figure) throws IOException
-	{String fileName = "Figure"+figure+ ".txt";
-		/*
-		
-		
+	{
+		int counter = 0; // this contains how many 
+		String fileName = "Figure"+figure+ ".txt";
 		InputStream is = new BufferedInputStream(new FileInputStream(fileName));
 		// this will read the new file created use figure to open the file. 
 		try {
@@ -100,7 +97,6 @@ public class Object extends Figure {
 	        while ((readChars = is.read(c)) != -1) {
 	            empty = false;
 	            for (int i = 0; i < readChars; ++i) {
-	     	
 	                if (c[i] == '\n') {
 	                    ++count;
 	                }
@@ -115,23 +111,6 @@ public class Object extends Figure {
 		
 		System.out.println("The total objects in " + figure + " = " + counter); // this may be removed
 		// could be set in the file analyzer 
-		
-		
-		*/ 
-	int counter = 0; // this contains how many 
-	try (BufferedReader br = new BufferedReader(new FileReader(fileName))) {
-	    String line;
-	    while ((line = br.readLine()) != null) {
-	       if(line.contains("*"))
-	       {
-	    	   counter++;
-	       }
-	    }
-	    br.close();
-	}
-		
-		
-		System.out.println("The total objects in " + figure + " = " + counter); // this may be removed
 		
 	}
 	

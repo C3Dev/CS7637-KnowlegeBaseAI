@@ -49,12 +49,10 @@ public class Object extends Figure {
 
           // start up the file 
           bufferedWriter.write("This file is used to store details about each figure \n");
-   
+          bufferedWriter.write("KEY: \n");
+          bufferedWriter.write("* = Object \n");
           bufferedWriter.write("Objects in the Figure: ");
-          bufferedWriter.newLine();
-      	bufferedWriter.write("-----------------------------------------------------");
-    	
-          bufferedWriter.newLine();
+	         
           
   		for (RavensObject ro : objects.values()) {
   			
@@ -127,7 +125,6 @@ public class Object extends Figure {
 	    	   counter++;
 	       }
 	    }
-	    br.close();
 	}
 		
 		

@@ -1,10 +1,10 @@
 package ccrooks6;
 
-import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.IOException;
+import java.io.LineNumberReader;
 import java.io.OutputStreamWriter;
 import java.util.HashMap;
 
@@ -49,12 +49,10 @@ public class Object extends Figure {
 
           // start up the file 
           bufferedWriter.write("This file is used to store details about each figure \n");
-   
+          bufferedWriter.write("KEY: \n");
+          bufferedWriter.write("* = Object \n");
           bufferedWriter.write("Objects in the Figure: ");
-          bufferedWriter.newLine();
-      	bufferedWriter.write("-----------------------------------------------------");
-    	
-          bufferedWriter.newLine();
+	         
           
   		for (RavensObject ro : objects.values()) {
   			
@@ -88,7 +86,7 @@ public class Object extends Figure {
 	public void printObjectValues(String figure) throws IOException
 	{String fileName = "Figure"+figure+ ".txt";
 		/*
-		
+		int counter = 0; // this contains how many 
 		
 		InputStream is = new BufferedInputStream(new FileInputStream(fileName));
 		// this will read the new file created use figure to open the file. 
@@ -118,17 +116,19 @@ public class Object extends Figure {
 		
 		
 		*/ 
-	int counter = 0; // this contains how many 
-	try (BufferedReader br = new BufferedReader(new FileReader(fileName))) {
-	    String line;
-	    while ((line = br.readLine()) != null) {
-	       if(line.contains("*"))
-	       {
-	    	   counter++;
-	       }
+		
+		
+		LineNumberReader r = new LineNumberReader(new FileReader(fileName));
+
+	    String line = null;
+	    int counter = 0; 
+	    while ((line = r.readLine()) != null) {
+	    if(line.contains("*"))
+	    {
+	    counter++; 	
 	    }
-	    br.close();
-	}
+	    r.close();
+	  }
 		
 		
 		System.out.println("The total objects in " + figure + " = " + counter); // this may be removed
