@@ -37,7 +37,7 @@ public class Object extends Figure {
 	}
 	
 	
-	public void printFigureObjects(String figureName) throws IOException
+	public void printObjectValues(String figureName) throws IOException
 	{
 		int globalcount = 0; 
 		
@@ -45,7 +45,7 @@ public class Object extends Figure {
 		FileOutputStream outputStream;
 		  OutputStreamWriter outputStreamWriter;
 		  BufferedWriter bufferedWriter = null;
-		  outputStream = new FileOutputStream("Figure"+figureName +".txt");
+		  outputStream = new FileOutputStream(figureName +".txt");
 		  outputStreamWriter = new OutputStreamWriter(outputStream, "UTF-16");
           bufferedWriter = new BufferedWriter(outputStreamWriter);
 
@@ -77,10 +77,10 @@ public class Object extends Figure {
 	
 	
 
-	public void printObjectValues(String figure) throws IOException
+	public void printFigureObjects(String figure) throws IOException
 	{
-		int counter = 0; // this contains how many 
-		String fileName = "Figure"+figure+ ".txt";
+		int counter = 0;
+		String fileName = figure +".txt";
 		InputStream is = new BufferedInputStream(new FileInputStream(fileName));
 		// this will read the new file created use figure to open the file. 
 		try {
@@ -103,7 +103,7 @@ public class Object extends Figure {
 		
 		
 		
-		System.out.println("The total objects in " + figure + " = " + counter);
+
 		
 	}
 	

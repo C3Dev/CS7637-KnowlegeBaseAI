@@ -5,7 +5,6 @@ import java.util.HashMap;
 
 import ravensproject.RavensFigure;
 import ravensproject.RavensObject;
-import ravensproject.RavensProblem;
 
 /*This class will hold as the basis for all the figures
  * Each figure is labeled A,B,C,D and 1,2,3,4,5,6
@@ -23,16 +22,9 @@ public class Figure {
 	HashMap<String, RavensObject> objects;
 	Object o; 
 	HashMap<String, RavensFigure> figureList; 
-	public String problemName; 
-	
 	public Figure()
 	{
 	
-	}
-	
-	public void setProblem(String problem)
-	{
-		this.problemName = problem; 
 	}
 	
 	
@@ -59,16 +51,18 @@ public class Figure {
 		 o = new Object(objects);
 		
 		 printObjects();
-		 
-	  	o.printObjectValues(figureName); // this will count the values in figure. 
-		 
+		 for(int i = 1; i <= 4; i++)
+		 {
+			 
+			 o.printFigureObjects(Integer.toString(i)); 
+		 }
 	}
 	
 	
 	public void printObjects() throws IOException
 	{
 	
-		o.printFigureObjects(figureName);
+		o.printObjectValues(figureName);
 	}
 	
 	

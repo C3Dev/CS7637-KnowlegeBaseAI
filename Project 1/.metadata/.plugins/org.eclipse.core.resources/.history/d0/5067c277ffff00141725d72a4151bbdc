@@ -59,8 +59,9 @@ public class Figure {
 		 o = new Object(objects);
 		
 		 printObjects();
-		 
-	  	o.printObjectValues(figureName); // this will count the values in figure. 
+		
+		System.out.println("GOOD TEST "+ figureName); 	 
+			//o.printObjectValues(Integer.toString(i)); 
 		 
 	}
 	

@@ -1,14 +1,12 @@
 package ccrooks6;
 
-import java.io.BufferedInputStream;
 import java.io.BufferedWriter;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.InputStream;
 import java.io.OutputStreamWriter;
 import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Map;
 
 import ravensproject.RavensObject;
 
@@ -37,7 +35,7 @@ public class Object extends Figure {
 	}
 	
 	
-	public void printFigureObjects(String figureName) throws IOException
+	public void printObjectValues(String figureName) throws IOException
 	{
 		int globalcount = 0; 
 		
@@ -45,7 +43,7 @@ public class Object extends Figure {
 		FileOutputStream outputStream;
 		  OutputStreamWriter outputStreamWriter;
 		  BufferedWriter bufferedWriter = null;
-		  outputStream = new FileOutputStream("Figure"+figureName +".txt");
+		  outputStream = new FileOutputStream(figureName +" .txt");
 		  outputStreamWriter = new OutputStreamWriter(outputStream, "UTF-16");
           bufferedWriter = new BufferedWriter(outputStreamWriter);
 
@@ -76,34 +74,22 @@ public class Object extends Figure {
 	}
 	
 	
-
-	public void printObjectValues(String figure) throws IOException
+	// will need altered 
+	// pass in the figure you want to know how many objects 
+	public void printFigureObjects(String figure)
 	{
-		int counter = 0; // this contains how many 
-		String fileName = "Figure"+figure+ ".txt";
-		InputStream is = new BufferedInputStream(new FileInputStream(fileName));
-		// this will read the new file created use figure to open the file. 
-		try {
-	        byte[] c = new byte[1024];
-	        int count = 0;
-	        int readChars = 0;
-	        boolean empty = true;
-	        while ((readChars = is.read(c)) != -1) {
-	            empty = false;
-	            for (int i = 0; i < readChars; ++i) {
-	                if (c[i] == '\n') {
-	                    ++count;
-	                }
-	            }
-	        }
-	       counter = (count == 0 && !empty) ? 1 : count;
-	    } finally {
-	        is.close();
-	    }
 		
+		int count = 0; 
+		for(int i = 0; i < list.values().size(); i++)
+		{
+			if(list.containsValue(figure))
+			{
+				count++;
+			}
+		}
 		
-		
-		System.out.println("The total objects in " + figure + " = " + counter);
+		System.out.println("Figure " + figure + " Contains " + count + "Objects");
+
 		
 	}
 	

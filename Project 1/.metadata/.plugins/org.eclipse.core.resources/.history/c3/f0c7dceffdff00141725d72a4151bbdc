@@ -59,16 +59,18 @@ public class Figure {
 		 o = new Object(objects);
 		
 		 printObjects();
-		 
-	  	o.printObjectValues(figureName); // this will count the values in figure. 
-		 
+		 for(int i = 1; i <= 4; i++)
+		 {
+			 
+			 o.setObjectsCount(Integer.toString(i)); 
+		 }
 	}
 	
 	
 	public void printObjects() throws IOException
 	{
 	
-		o.printFigureObjects(figureName);
+		o.printObjectValues(figureName);
 	}
 	
 	
