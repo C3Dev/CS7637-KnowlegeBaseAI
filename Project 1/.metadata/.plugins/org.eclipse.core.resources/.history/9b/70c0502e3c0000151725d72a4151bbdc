@@ -46,25 +46,14 @@ public class Figure {
 	
 	
 	
-	public void setAttributes(RavensProblem problem)
+	public void setAttributes()
 	{
-		RavensFigure thisFigure = problem.getFigures().get(figureName);
-		
-		
-		// note this is n^2 
+		RavensFigure thisFigure = figureList.get(figureName);
 		for(String objectName : thisFigure.getObjects().keySet()) {
 			RavensObject thisObject = thisFigure.getObjects().get(objectName);
-			for(String attributeName : thisObject.getAttributes().keySet()) {
-				String attributeValue = thisObject.getAttributes().get(attributeName); 
-				System.out.println(figureName + " " + objectName + " " +attributeName +  " " +attributeValue);
-				}
 
-
-			   
 			}
-		
-	
-	
+
 	}
 	
 	

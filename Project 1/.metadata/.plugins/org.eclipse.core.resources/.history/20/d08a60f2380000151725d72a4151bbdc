@@ -46,18 +46,11 @@ public class Setup {
 			 
 			 figure.setFigureName(rf.getName());
 			 figure.setFigureList(problem.getFigures()); // just passing to the figure tree
-			 figure.setObjects(rf.getObjects()); // this is going to handle the deep work
-			 figure.setAttributes(problem); 
-			 
-			 
-			 
-			 
-			 FileAnalyzer f = new FileAnalyzer(); 
-			 f.open(); 
-			 // f.getTotalObjects() Not implemented. 
-			 // f.getAttributes etc....
-			 
 			
+			
+			 
+			 figure.setObjects(rf.getObjects()); // this is going to handle the deep work
+			 
 		}
 		
 		

@@ -58,8 +58,8 @@ public class Object extends Figure {
           
   		for (RavensObject ro : objects.values()) {
   			
-  		//	System.out.println("Printing Objects for figure " + figureName); 
-  		//	System.out.println(ro.getName());
+  			System.out.println("Printing Objects for figure " + figureName); 
+  			System.out.println(ro.getName());
   		
 		
 	      //  System.out.println(figureName + " " + pair.getKey());
@@ -69,7 +69,7 @@ public class Object extends Figure {
 	             
 	           
 	             
-	           bufferedWriter.write("* " + " "+ ro.getName());
+	           bufferedWriter.write("* " +figureName + " " + ro.getName());
 	            bufferedWriter.newLine();
 	         
 	             

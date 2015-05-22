@@ -46,26 +46,7 @@ public class Figure {
 	
 	
 	
-	public void setAttributes(RavensProblem problem)
-	{
-		RavensFigure thisFigure = problem.getFigures().get(figureName);
-		
-		
-		// note this is n^2 
-		for(String objectName : thisFigure.getObjects().keySet()) {
-			RavensObject thisObject = thisFigure.getObjects().get(objectName);
-			for(String attributeName : thisObject.getAttributes().keySet()) {
-				String attributeValue = thisObject.getAttributes().get(attributeName); 
-				System.out.println(figureName + " " + objectName + " " +attributeName +  " " +attributeValue);
-				}
-
-
-			   
-			}
-		
 	
-	
-	}
 	
 	
 
@@ -80,11 +61,7 @@ public class Figure {
 		 printObjects();
 		 
 	  	o.printObjectValues(figureName); // this will count the values in figure. 
-	  	
-	  	
-	  	//now i got each figure object from each figure. 
-	  	// now need to set attributes and solve this thing
-
+		 
 	}
 	
 	
