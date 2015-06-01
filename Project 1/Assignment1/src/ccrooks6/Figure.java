@@ -3,6 +3,7 @@ package ccrooks6;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 import ravensproject.RavensFigure;
 import ravensproject.RavensObject;
@@ -28,7 +29,17 @@ public class Figure {
 	// Attribute a,b;
 	ArrayList a, b, c, one, two, three, four, five, six, similarites;
 	ArrayList abSimilarties, abDifferences; 
+	List<ArrayList> absim ;
+	List<ArrayList> abdiff;
 
+	ArrayList cFigSimilarties, cFigDifferences; 
+	List<ArrayList> cFigsim;
+	List<ArrayList> cFigdiff;
+
+	
+	
+	String answer;
+	
 	public int weight;
 	/*
 	 * No Transformation = 10 Fill Transformation = 9 Angle, verticle-flip trans
@@ -57,45 +68,67 @@ public class Figure {
 
 	public void generateTest() throws IOException
 	{
+		ArrayList<Attribute> listC = new ArrayList<Attribute>(); 
+		for(int f = 1; f <= 6; f++){
+		ArrayList numObject = new ArrayList(); 	
+		String number = " ";
+		switch(f)
+		{
+		case 1 : number = "1"; numObject = one; 
+		break;
+		case 2 : number = "2";numObject = two; 
+		break;
+		case 3 : number = "3";numObject = three; 
+		break;
+		case 4 : number = "4";numObject = four; 
+		break;
+		case 5 : number = "5";numObject = five; 
+		break;
+		case 6 : number = "6";numObject = six; 
+		break;}
 		
 		final int totalC = o.getObjectCount("C");
-		final int totalone = o.getObjectCount("1");
+		final int totalNumber= o.getObjectCount(number);
 		
-		
-		if (totalC != totalone) {
-			
-		}
-		else {}
-
+	
 		String[] split = new String[600];
 		String shapeA = " ";
 		String object = "";
 		String size = "";
-		Attribute figA;
-		Attribute figB;
-		ArrayList<Attribute> listC = new ArrayList<Attribute>(); 
+		Attribute figA = null;
+		Attribute figB = null;
+	
 		ArrayList<Attribute> listone = new ArrayList<Attribute>(); 
 		Object objC = new Object();
 		Object objone = new Object();
 		// this counts the objects 
 		
-		
+		String historyObject = "";
+		// by this if it reduces time complexity. of n^2 
+		// this will generate C's values. 
+		if(f == 1){
 	for(int j = 0; j < totalC; j++){
-		// this needs to make a new arraylist for each group of objects 
-		figA  = new Attribute(); 
+		
 		
 		// needed 
 		objC.printObjectValues("C");
 		objC.getObjectValues();  // returns A and b 
-		objone.printObjectValues("1");
+		objone.printObjectValues(number);
 		objone.getObjectValues(); // returns C and D 
 	
 		
-		ArrayList att;
+	
 		
 		for (int i = 0; i < c.size(); i++) {
-		att = new ArrayList();
-			split = a.get(i).toString().split(" ");
+			split = numObject.get(i).toString().split(" ");
+			String test = split[0];
+	
+			if(!historyObject.equals(historyObject) || historyObject.equals("") || !test.equals(historyObject)){
+				listC.add(figA);
+				figA  = new Attribute(); 
+			}
+					
+			historyObject = split[0]; 
 	
 			
 			if (c.get(i).toString().contains("shape")) {
@@ -104,53 +137,97 @@ public class Figure {
 				figA.shape = split[2];
 			}
 			if (c.get(i).toString().contains("size")) {
-				size = split[2] + " " +split[3];
+				if(split[2].equals("very"))
+					figA.size = split[2] + " " +split[3];
+					else{
+						figA.size = split[2]; 
+					}
 				figA.hasSize = true;
-				figA.size = size;
+				
 			}
 
 	if (c.get(i).toString().contains("fill")) {
 				
-				figA.hasFill = true;
+				figA.hasfill = true;
 				figA.fill = split[2];
 			}
 		  
+	
+	if (c.get(i).toString().contains("angle")) {
+		
+		figA.hasAngle = true;
+		figA.angle = split[2];
+	}
+  
+	if (c.get(i).toString().contains("inside")) {
+		
+		figA.hasInside = true;
+		figA.inside = split[2];
+	}
+	
+	
+	
 		}
 		listC.add(figA);
 	
 	}// end first for 
-	
+		}
 	
 	
 	for(int j = 0; j < totalC; j++){
-		// this needs to make a new arraylist for each group of objects 
-		figB  = new Attribute(); 
-		
+
 			
-		ArrayList att;
-		
-		for (int i = 0; i < b.size(); i++) {
-		att = new ArrayList();
-			split = one.get(i).toString().split(" ");
+		for (int i = 0; i < numObject.size(); i++) {
+
+
+			split = b.get(i).toString().split(" ");
+			String test = split[0];
+	
+			if(!historyObject.equals(historyObject) || historyObject.equals("") || !test.equals(historyObject)){
+				listone.add(figB);
+				figB  = new Attribute(); 
+			}
+					
+			historyObject = split[0]; 
+			
 	
 			
-			if (one.get(i).toString().contains("shape")) {
+			if (numObject.get(i).toString().contains("shape")) {
 				
 				figB.hasShape = true;
 				figB.shape = split[2];
 			}
-			if (one.get(i).toString().contains("size")) {
+			if (numObject.get(i).toString().contains("size")) {
 				
+				if(split[2].equals("very"))
+					figB.size = split[2] + " " +split[3];
+					else{
+						figB.size = split[2]; 
+					}
 				figB.hasSize = true;
-				figB.size = split[2] + " " +split[3];
+				figB.size = size;
 			}
 
-	if (one.get(i).toString().contains("fill")) {
+	if (numObject.get(i).toString().contains("fill")) {
 				
-				figB.hasFill = true;
+				figB.hasfill = true;
 				figB.fill = split[2];
 			}
 		  
+		
+		
+		if (numObject.get(i).toString().contains("angle")) {
+			
+			figB.hasAngle = true;
+			figB.angle = split[2];
+		}
+	  
+		if (numObject.get(i).toString().contains("inside")) {
+			
+			figB.hasInside = true;
+			figB.inside = split[2];
+		}
+		
 		}
 		listone.add(figB);
 	
@@ -158,10 +235,10 @@ public class Figure {
 	
 	
 
-	getSimiliartiesAB(listC, listone, 2); 
+	getSimiliartiesAB(listC, listone, f,2); 
 
 		
-		
+		} // end first for loop. 
 
 	}
 	
@@ -185,18 +262,18 @@ public class Figure {
 		String shapeA = " ";
 		String object = "";
 		String size = "";
-		Attribute figA;
-		Attribute figB;
+		Attribute figA = null;
+		Attribute figB = null;
 		ArrayList<Attribute> listA = new ArrayList<Attribute>(); 
 		ArrayList<Attribute> listB = new ArrayList<Attribute>(); 
 		Object objA = new Object();
 		Object objB = new Object();
 		// this counts the objects 
+		String historyObject = "";  
 		
-		
-	for(int j = 0; j < totalA; j++){
+	
 		// this needs to make a new arraylist for each group of objects 
-		figA  = new Attribute(); 
+	
 		
 		// needed 
 		objA.printObjectValues("A");
@@ -208,12 +285,19 @@ public class Figure {
 		System.out.println("TEST B "  + b);
 		// all good up to here. 
 			
-		ArrayList att;
+
 		
 		for (int i = 0; i < a.size(); i++) {
-		att = new ArrayList();
+			
 			split = a.get(i).toString().split(" ");
+			String test = split[0];
 	
+			if(!historyObject.equals(historyObject) || historyObject.equals("") || !test.equals(historyObject)){
+				listA.add(figA);
+				figA  = new Attribute(); 
+			}
+					
+			historyObject = split[0]; 
 			
 			if (a.get(i).toString().contains("shape")) {
 				shapeA = split[2];
@@ -221,35 +305,53 @@ public class Figure {
 				figA.shape = split[2];
 			}
 			if (a.get(i).toString().contains("size")) {
+				if(split[2].equals("very"))
 				size = split[2] + " " +split[3];
+				else{
+					size = split[2]; 
+				}
 				figA.hasSize = true;
 				figA.size = size;
 			}
 
 	if (a.get(i).toString().contains("fill")) {
 				
-				figA.hasFill = true;
+				figA.hasfill = true;
 				figA.fill = split[2];
 			}
-		  
-		}
+	
+	if (a.get(i).toString().contains("angle")) {
+		
+		figA.hasAngle = true;
+		figA.angle = split[2];
+	}
+  
+	if (a.get(i).toString().contains("inside")) {
+		
+		figA.hasInside = true;
+		figA.inside = split[2];
+	}
+  
+	
+}
 		listA.add(figA);
 	
-	}// end first for 
-	
-	
+// error
 	
 	for(int j = 0; j < totalB; j++){
-		// this needs to make a new arraylist for each group of objects 
-		figB  = new Attribute(); 
 		
-			
-		ArrayList att;
 		
 		for (int i = 0; i < b.size(); i++) {
-		att = new ArrayList();
-			split = a.get(i).toString().split(" ");
 	
+			split = b.get(i).toString().split(" ");
+			String test = split[0];
+	
+			if(!historyObject.equals(historyObject) || historyObject.equals("") || !test.equals(historyObject)){
+				listB.add(figB);
+				figB  = new Attribute(); 
+			}
+					
+			historyObject = split[0]; 
 			
 			if (b.get(i).toString().contains("shape")) {
 				
@@ -258,15 +360,33 @@ public class Figure {
 			}
 			if (b.get(i).toString().contains("size")) {
 				
-				figB.hasSize = true;
-				figB.size = split[2] + " " +split[3];
+				if(split[2].equals("very"))
+					size = split[2] + " " +split[3];
+					else{
+						size = split[2]; 
+					}
+					figB.hasSize = true;
+					figB.size = size;
 			}
 
 	if (b.get(i).toString().contains("fill")) {
 				
-				figB.hasFill = true;
+				figB.hasfill = true;
 				figB.fill = split[2];
 			}
+	
+	
+if (b.get(i).toString().contains("angle")) {
+		
+		figB.hasAngle = true;
+		figB.angle = split[2];
+	}
+  
+	if (b.get(i).toString().contains("inside")) {
+		
+		figB.hasInside = true;
+		figB.inside = split[2];
+	}
 		  
 		}
 		listB.add(figB);
@@ -276,84 +396,193 @@ public class Figure {
 	
 	
 	
-	getSimiliartiesAB(listA, listB,1); 
+	getSimiliartiesAB(listA, listB,0, 1); 
 
 	}
 
 	// BIG METHOD BIG IMPLEMENTATION 
-	public void getSimiliartiesAB(ArrayList<Attribute> listA, ArrayList<Attribute> listB, int setting)
+	public void getSimiliartiesAB(ArrayList<Attribute> listA, ArrayList<Attribute> listB, int setting, int procedure)
 	{
+		// 0 holds object 1 
+		// 1 holds object 2 
+		
 		// check what values are there.
-		boolean aSize = listA.get(0).hasSize;
-		boolean aShape = listA.get(0).hasShape;
-		boolean aFill = listA.get(0).hasFill; 
 		
-		boolean bSize = listB.get(0).hasSize;
-		boolean bShape = listB.get(0).hasShape;
-		boolean bFill = listB.get(0).hasFill; 
-	//-------------------------------------------------------- 	
-		String aSizeVal =  listA.get(0).size;
-		String aShapeVal =  listA.get(0).shape;
-		String afillVal=  listA.get(0).fill;
-		// ------------------------------------------
-		// B figure
-		String bSizeVal =  listB.get(0).size;
-		String bShapeVal =  listB.get(0).shape;
-		String bfillVal=  listB.get(0).fill;
-		
-		
-		ArrayList similarites = new ArrayList();
+		// Step 1 make sure that the lists have the same amount of objects
+		ArrayList similarites = null; 
+		ArrayList differences = null; 
+		List<ArrayList> sim = new ArrayList(); 
+		List<ArrayList> diff = new ArrayList(); 
+		if(listA.size() == listB.size())
+		{
+			// objects have the same size. 
+			for(int i = 1; i < listA.size(); i++)
+			{
+				boolean aSize = listA.get(i).hasSize;
+				boolean aShape = listA.get(i).hasShape;
+				boolean aFill = listA.get(i).hasfill; 
+				boolean aAngle = listA.get(i).hasAngle;
+				boolean aInside= listA.get(i).hasInside; 
+				
+				boolean bSize = listB.get(i).hasSize;
+				boolean bShape = listB.get(i).hasShape;
+				boolean bFill = listB.get(i).hasfill; 
+				boolean bAngle = listB.get(i).hasAngle;
+				boolean bInside= listB.get(i).hasInside; 
+				
+			//-------------------------------------------------------- 	
+				String aSizeVal =  listA.get(i).size;
+				String aShapeVal =  listA.get(i).shape;
+				String afillVal=  listA.get(i).fill;
+				String aAngleVal =  listA.get(i).angle;
+				String aInsideVal=  listA.get(i).inside;
+				// ------------------------------------------
+				// B figure
+				String bSizeVal =  listB.get(i).size;
+				String bShapeVal =  listB.get(i).shape;
+				String bfillVal=  listB.get(i).fill;
+				String bAngleVal =  listB.get(i).angle;
+				String bInsideVal=  listB.get(i).inside;
+				
+				similarites = new ArrayList();
 
-		ArrayList differences = new ArrayList();
-		
-		if(aSize && bSize)
-		{
-			if(aSizeVal.equals(bSizeVal)){
-				similarites.add("size " + aSizeVal);
-			}else{
-				// they are different. 
-				differences.add("size " + bSizeVal); // the one it changes to. 
+				differences = new ArrayList();
+				
+				if(aSize && bSize)
+				{
+					if(aSizeVal.equals(bSizeVal)){
+						similarites.add("size " + aSizeVal);
+					}else{
+						// they are different. 
+						differences.add("size " + bSizeVal); // the one it changes to. 
+					}
+				}
+				
+				if(aShape && bShape)
+				{
+					if(aShapeVal.equals(bShapeVal)){
+						similarites.add("shape " + aShapeVal);
+					}else{
+						// they are different. 
+						differences.add("shape " + bShapeVal); // the one it changes to. 
+					}
+				}
+				
+				
+				if(aFill && bFill)
+				{
+					if(afillVal.equals(bfillVal)){
+						similarites.add("fill " + afillVal);
+					}else{
+						// they are different. 
+						differences.add("fill " + bfillVal); // the one it changes to. 
+					}
+				}
+				if(aAngle && bAngle)
+				{
+					if(aAngleVal.equals(bAngleVal)){
+						similarites.add("angle " + aAngleVal);
+					}else{
+						// they are different. 
+						differences.add("angle " + bAngleVal); // the one it changes to. 
+					}
+				}
+				
+				
+				if(aInside && bInside)
+				{
+					if(aInsideVal.equals(bInsideVal)){
+						similarites.add("inside " + aInsideVal);
+					}else{
+						// they are different. 
+						differences.add("inside " + bInsideVal); // the one it changes to. 
+					}
+				}
+				
+				
+				
+				sim.add(similarites);
+				diff.add(differences);
+				// dont know how to handle this yet 
+				if(procedure == 1){
+				abSimilarties = similarites; 
+				abDifferences = differences; 
+				
+				absim = sim;
+				abdiff = diff; 
+				}
+				else if (procedure == 2)
+				{
+					cFigSimilarties = similarites; 
+					cFigDifferences = differences;
+					cFigsim = sim;
+					cFigdiff = diff; 
+				}
+			
+				
+				// now i have the sim and differences in a list. 
+				
 			}
+			
+			
 		}
 		
-		if(aShape && bShape)
-		{
-			if(aShapeVal.equals(bShapeVal)){
-				similarites.add("shape " + aShapeVal);
-			}else{
-				// they are different. 
-				differences.add("shape " + bShapeVal); // the one it changes to. 
-			}
-		}
-		
-		
-		if(aFill && bFill)
-		{
-			if(afillVal.equals(bfillVal)){
-				similarites.add("fill " + afillVal);
-			}else{
-				// they are different. 
-				differences.add("fill " + bfillVal); // the one it changes to. 
-			}
-		}
 		
 		
 		
-		abSimilarties = similarites; 
-		abDifferences = differences; 
+		if(setting == 0){
 		
-		if(setting == 1){
-		
-		System.out.println("THE SIMILARITES ARE : " + abSimilarties);
+		System.out.println("THE SIMILARITES of A and B  : " + abSimilarties);
 
-		System.out.println("THE differences ARE : " + abDifferences);
+		System.out.println("THE differences of A and B : " + abDifferences);
 		}
-		if(setting == 2)
+		if(setting == 1)
 		{	System.out.println("THE SIMILARITES of C and 1: " + abSimilarties);
 
 		System.out.println("THE differences of C and 1 : " + abDifferences);
 			
 		}
+		if(setting == 2)
+		{	System.out.println("THE SIMILARITES of C and 2: " + abSimilarties);
+
+		System.out.println("THE differences of C and 2 : " + abDifferences);
+			
+		}
+		if(setting == 3)
+		{	System.out.println("THE SIMILARITES of C and 3: " + abSimilarties);
+
+		System.out.println("THE differences of C and 3 : " + abDifferences);
+			
+		}
+		if(setting == 4)
+		{	System.out.println("THE SIMILARITES of C and 4: " + abSimilarties);
+
+		System.out.println("THE differences of C and 4 : " + abDifferences);
+			
+		}
+		
+		if(setting == 5)
+		{	System.out.println("THE SIMILARITES of C and 5: " + abSimilarties);
+
+		System.out.println("THE differences of C and 5 : " + abDifferences);
+			
+		}
+		if(setting == 6)
+		{	System.out.println("THE SIMILARITES of C and 6: " + abSimilarties);
+
+		System.out.println("THE differences of C and 6 : " + abDifferences);
+			
+		}
+		
+		
+		
+		
+		if(differences.size() == 0)
+		{
+			System.out.println("The Answer is " + setting);
+		}
+		
+		
 		
 	}
 	
@@ -425,11 +654,11 @@ public class Figure {
 							+ attributeValue);
 				}
 				if (figureName.contains("1")) {
-					one.add(figureName + " " +attributeName + " "
+					one.add(thisObject.getName() + " " +attributeName + " "
 							+ attributeValue);
 				}
 				if (figureName.contains("2")) {
-					two.add(figureName + " " +attributeName + " "
+					two.add(thisObject.getName() + " " +attributeName + " "
 							+ attributeValue);
 				}
 				if (figureName.contains("3")) {
