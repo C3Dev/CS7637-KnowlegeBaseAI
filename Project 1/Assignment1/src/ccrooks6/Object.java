@@ -6,6 +6,7 @@ import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.OutputStreamWriter;
+import java.util.ArrayList;
 import java.util.HashMap;
 
 import ravensproject.RavensObject;
@@ -15,11 +16,11 @@ public class Object extends Figure {
 	public int count;
 	public String figureBackup;
 	HashMap<String, String> list;
-
+	ArrayList values;
 	HashMap<String, RavensObject> objects;
 
 	public Object() {
-
+		values = new ArrayList(); 
 		count = 0;
 		list = new HashMap<String, String>();
 	}
@@ -96,8 +97,11 @@ public class Object extends Figure {
 		int counter = 0; // this contains how many
 		try (BufferedReader br = new BufferedReader(new FileReader(fileName))) {
 			String line;
+			String[] split = new String[600];
 			while ((line = br.readLine()) != null) {
 				if (line.contains("*")) {
+					split = line.split(" ");
+					values.add(split[2]);
 					counter++;
 				}
 			}
@@ -109,6 +113,11 @@ public class Object extends Figure {
 																				// be
 																				// removed
 
+	}
+	
+	public ArrayList getObjectValues()
+	{
+		return values;
 	}
 
 	public int getObjectCount(final String figure) throws IOException {
@@ -136,6 +145,7 @@ public class Object extends Figure {
 			String line;
 			while ((line = br.readLine()) != null) {
 				if (line.contains("*")) {
+					
 					counter++;
 				}
 			}

@@ -37,27 +37,29 @@ public class Setup {
 			figure = new Figure();
 			figure.setProblem(problem.getName());
 
-			figure.setFigureName(rf.getName());
+			figure.setFigureName(rf.getName()); // first iteration gets 1; 
+			
+			
 			figure.setFigureList(problem.getFigures()); // just passing to the
 			// figure tree
 			figure.setObjects(rf.getObjects()); // this is going to handle the
 			// deep work
 
 			final Object o = new Object();
+		
 
 			// check to see if A and B have the same amount of objects
 			if (o.getObjectCount("A") == o.getObjectCount("B")) {
 
-				figure.setAttributes(problem);
-
+				figure.setAttributes(problem);	
+				figure.setSimilarites();
+				figure.generateTest(); 
 				// figure.printA();
 				// figure.printB();
 
 				
 				
-		//		figure.setSimilarites(); // a and be set up an array of values
-				// similar
-
+	
 				final FileAnalyzer f = new FileAnalyzer();
 				f.open();
 			}
