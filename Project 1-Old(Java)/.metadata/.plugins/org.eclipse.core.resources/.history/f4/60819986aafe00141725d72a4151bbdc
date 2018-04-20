@@ -1,0 +1,57 @@
+package ccrooks6;
+
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Map;
+
+import ravensproject.RavensObject;
+
+public class Object extends Figure {
+
+	public int count; 
+	public String figureBackup; 
+	HashMap<String, String> list;
+
+	HashMap<String, RavensObject> objects;
+
+	public Object()
+	{
+	
+		count = 0; 
+		list = new HashMap<String, String>(); 
+	}
+	
+	public Object(HashMap<String, RavensObject> objects) {
+		this.objects = objects; 
+	}
+
+	public void setNumObjects(int count)
+	{
+		this.count = count;
+	}
+	
+	
+	public void printObjectValues(String figureName)
+	{
+		int globalcount = 0; 
+		
+		
+		Iterator it = objects.entrySet().iterator();
+		while (it.hasNext()) {
+			Map.Entry pair = (Map.Entry)it.next();
+	        System.out.println(figureName + " " + pair.getKey());
+	        
+	        list.put(figureName, pair.getKey());
+
+		}
+		
+	
+		
+		
+		
+		
+	}
+	
+	
+	
+}
